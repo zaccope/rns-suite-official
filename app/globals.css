@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #0A0807;
+    color: #F5ECE1;
+  }
+
+  ::selection {
+    background-color: #E14220;
+    color: #0A0807;
+  }
+}
+
+@layer utilities {
+  .texture-grain {
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(225, 66, 32, 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(226, 149, 31, 0.05) 0%, transparent 40%);
+  }
+
+  .ember-glow {
+    background:
+      radial-gradient(ellipse at center, rgba(225, 66, 32, 0.25) 0%, transparent 60%);
+  }
+
+  .stage-lights {
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(225, 66, 32, 0.18) 0%, transparent 35%),
+      radial-gradient(circle at 85% 0%, rgba(42, 99, 236, 0.14) 0%, transparent 35%),
+      radial-gradient(circle at 50% 20%, rgba(226, 149, 31, 0.12) 0%, transparent 45%);
+  }
+
+  .smoke-texture {
+    background-image:
+      radial-gradient(ellipse at 30% 40%, rgba(225, 66, 32, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 60%, rgba(20, 15, 13, 0.4) 0%, transparent 60%);
+  }
+
+  .text-shadow-flame {
+    text-shadow:
+      0 0 20px rgba(225, 66, 32, 0.3),
+      0 0 40px rgba(225, 66, 32, 0.15);
+  }
+}
