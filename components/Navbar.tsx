@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { List, X, Flame, Phone } from '@phosphor-icons/react'
+import Image from 'next/image'
+import { List, X, Phone } from '@phosphor-icons/react'
 
 const navLinks = [
   { label: "What's On", href: '#whats-on' },
@@ -42,12 +43,18 @@ export default function Navbar() {
       }`}
     >
       <nav className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-16 md:h-20">
-        <a href="#" className="flex items-center gap-2.5 group">
-          <Flame
-            weight="fill"
-            className="w-6 h-6 text-ember-500 group-hover:text-ember-400 transition-colors animate-flicker"
-          />
-          <span className="font-heading text-xl md:text-2xl tracking-wider text-cream uppercase">
+        <a href="#" className="flex items-center gap-3 group">
+          <div className="relative w-10 h-10 md:w-11 md:h-11 rounded-sm overflow-hidden bg-noir-900 ring-1 ring-ember-500/30 group-hover:ring-ember-400/60 transition-all">
+            <Image
+              src="/images/LOGO.jpg"
+              alt="Rock N Soul Suite"
+              fill
+              priority
+              sizes="44px"
+              className="object-cover"
+            />
+          </div>
+          <span className="font-heading text-xl md:text-2xl tracking-wider text-cream uppercase hidden sm:inline">
             Rock <span className="text-ember-500">N</span> Soul
           </span>
         </a>

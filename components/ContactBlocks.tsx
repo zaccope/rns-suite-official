@@ -33,7 +33,8 @@ export default function ContactBlocks() {
           <p className="text-xs font-mono uppercase tracking-widest text-cream/50">
             Find us
           </p>
-          <p className="font-medium text-cream">Wrexham town centre</p>
+          <p className="font-medium text-cream">15&ndash;17 Hill Street</p>
+          <p className="text-xs text-cream/60 font-mono tracking-wider">Wrexham LL11 1SN</p>
         </div>
       </div>
 

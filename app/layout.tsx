@@ -66,16 +66,16 @@ const jsonLd = {
   '@type': 'BarOrPub',
   name: 'Rock N Soul Suite',
   description:
-    "Live music bar in Wrexham — rock, soul, cocktails, late nights and private hire.",
+    "Live music bar in Wrexham — rock, soul, cocktails, late nights, tribute acts and private hire.",
   address: {
     '@type': 'PostalAddress',
+    streetAddress: '15-17 Hill Street',
     addressLocality: 'Wrexham',
+    postalCode: 'LL11 1SN',
     addressCountry: 'GB',
   },
-  areaServed: [
-    { '@type': 'City', name: 'Wrexham' },
-  ],
-  servesCuisine: 'Bar food',
+  areaServed: [{ '@type': 'City', name: 'Wrexham' }],
+  servesCuisine: 'Bar food, Burgers',
   acceptsReservations: true,
 }
 

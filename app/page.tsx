@@ -16,6 +16,7 @@ import {
   Lightning,
   Star,
 } from '@phosphor-icons/react/dist/ssr'
+import Image from 'next/image'
 import ScrollReveal from '@/components/ScrollReveal'
 import ContactForm from '@/components/ContactForm'
 import HeroButtons from '@/components/HeroButtons'
@@ -78,7 +79,7 @@ export default function Home() {
             </span>
             Open Late Tonight
           </span>
-          <span>Wrexham, LL13</span>
+          <span>Hill St &middot; Wrexham</span>
         </div>
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-5 md:px-8 pt-32 pb-20 md:pb-28">
@@ -174,9 +175,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════ WHAT'S ON ═══════════════════════════════════════ */}
+      {/* ═══════════════════════════════════════ WHAT'S ON — HEADLINE EVENTS ═══════════════════════════════════════ */}
       <section id="whats-on" className="relative py-24 md:py-32 bg-noir-900 overflow-hidden">
         <div aria-hidden className="absolute inset-0 smoke-texture pointer-events-none" />
+        <div
+          aria-hidden
+          className="absolute top-1/3 -right-40 w-[500px] h-[500px] rounded-full opacity-20 blur-3xl"
+          style={{
+            background:
+              'radial-gradient(circle, rgba(225,66,32,0.4) 0%, transparent 60%)',
+          }}
+        />
 
         <div className="relative max-w-7xl mx-auto px-5 md:px-8">
           <ScrollReveal>
@@ -184,113 +193,171 @@ export default function Home() {
               <div className="lg:col-span-6">
                 <p className="text-xs font-mono uppercase tracking-[0.2em] text-ember-400 mb-4 flex items-center gap-2">
                   <Lightning weight="fill" className="w-3.5 h-3.5" />
-                  / This Week
+                  / What&rsquo;s Coming
                 </p>
                 <h2 className="font-heading text-5xl md:text-6xl lg:text-7xl tracking-wide leading-[0.9] uppercase text-cream">
-                  What&rsquo;s <span className="text-ember-500">on</span>
+                  Tribute
                   <br />
-                  <span className="italic font-display text-blaze-400">the bill.</span>
+                  <span className="italic font-display text-blaze-400">nights</span>{' '}
+                  <span className="text-ember-500">locked in.</span>
                 </h2>
               </div>
               <div className="lg:col-span-5 lg:col-start-8 lg:pt-4">
                 <p className="text-lg text-cream/60 leading-relaxed">
-                  Seven nights, never the same twice. From Thursday karaoke riots to
-                  Saturday live bands and Sunday soul sessions — there&rsquo;s always
-                  a reason to walk through the door.
+                  The biggest nights on the calendar — full tribute acts, Skiddle
+                  tickets, and a room that fills before the support even starts.
+                  Lock in early or pay on the door.
                 </p>
               </div>
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {/* Poster feature pair */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
             {[
               {
-                day: 'Thursday',
-                title: 'Karaoke Riot',
-                time: '9pm — late',
-                desc: 'Grab the mic or grab a drink. Either way, you&rsquo;re in.',
-                accent: 'ember',
-              },
-              {
-                day: 'Friday',
-                title: 'Live Band Night',
-                time: '9:30pm',
-                desc: 'Rock covers, original acts, full PA. The room moves.',
+                poster: '/images/POSTER2.jpg',
+                headline: 'Diana Ross Tribute',
+                artist: 'Cherie Jade',
+                subtitle: 'Queen of Motown & Disco Hits',
+                date: 'Sat 30 May',
+                time: 'Doors 9pm',
+                price: '£10 Skiddle / £15 Door',
+                tag: 'Headline',
                 accent: 'blaze',
               },
               {
-                day: 'Saturday',
-                title: 'The Main Event',
-                time: '10pm — late',
-                desc: 'Our biggest live night. Book a table — it fills fast.',
+                poster: '/images/POSTER3.jpg',
+                headline: 'MJ Tribute Night',
+                artist: 'Jay Styles',
+                subtitle: 'Hosted by NSE — Non Stop Entertainment',
+                date: 'Sat 2 May 2026',
+                time: '10pm',
+                price: 'Tickets on Skiddle',
+                tag: 'Headline',
                 accent: 'ember',
               },
-              {
-                day: 'Sunday',
-                title: 'Soul Sessions',
-                time: '7pm',
-                desc: 'Motown, R&B, classic soul. Slower pace, same quality drinks.',
-                accent: 'blaze',
-              },
-              {
-                day: 'Midweek',
-                title: 'Open Mic',
-                time: 'Tues 8pm',
-                desc: 'Singers, players, songwriters — sign up, bring the house.',
-                accent: 'ember',
-              },
-              {
-                day: 'Any Night',
-                title: 'Private Hire',
-                time: 'By arrangement',
-                desc: 'Birthdays, stag dos, work parties, wakes. Your night, our room.',
-                accent: 'blaze',
-              },
-            ].map((ev, i) => (
-              <ScrollReveal key={ev.title} delay={i * 60}>
-                <div
-                  className={`group relative h-full bg-noir-800 border border-noir-700 rounded-sm p-7 hover:border-ember-500/60 transition-all overflow-hidden`}
-                >
-                  {/* Corner flame accent */}
-                  <div
-                    aria-hidden
-                    className={`absolute -top-10 -right-10 w-32 h-32 rounded-full blur-2xl opacity-0 group-hover:opacity-30 transition-opacity ${
-                      ev.accent === 'ember' ? 'bg-ember-500' : 'bg-blaze-500'
-                    }`}
-                  />
+            ].map((ev, i) => {
+              const isEmber = ev.accent === 'ember'
+              const borderHover = isEmber ? 'hover:border-ember-500/60' : 'hover:border-blaze-500/60'
+              const tagBg = isEmber ? 'bg-ember-500' : 'bg-blaze-500'
+              const dateText = isEmber ? 'text-ember-400' : 'text-blaze-400'
+              const iconColor = isEmber ? 'text-ember-500' : 'text-blaze-500'
 
-                  <div className="relative flex items-start justify-between mb-6">
-                    <span
-                      className={`font-mono text-xs uppercase tracking-[0.2em] ${
-                        ev.accent === 'ember' ? 'text-ember-400' : 'text-blaze-400'
+              return (
+                <ScrollReveal key={ev.headline} delay={i * 100}>
+                  <div
+                    className={`group relative bg-noir-800 border border-noir-700 ${borderHover} rounded-sm overflow-hidden transition-all`}
+                  >
+                    {/* Poster image */}
+                    <div className="relative aspect-[4/5] overflow-hidden bg-noir-950">
+                      <Image
+                        src={ev.poster}
+                        alt={`${ev.headline} — ${ev.artist}`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                      />
+                      {/* Corner tag */}
+                      <div
+                        className={`absolute top-4 left-4 px-3 py-1.5 ${tagBg} text-noir-950 text-xs font-mono font-bold uppercase tracking-widest rounded-sm`}
+                      >
+                        {ev.tag}
+                      </div>
+                      {/* Bottom gradient */}
+                      <div
+                        aria-hidden
+                        className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-noir-900 to-transparent"
+                      />
+                    </div>
+
+                    {/* Text below */}
+                    <div className="p-6 md:p-8">
+                      <div className="flex items-start justify-between gap-4 mb-3">
+                        <div>
+                          <p
+                            className={`text-xs font-mono uppercase tracking-[0.2em] ${dateText} mb-1`}
+                          >
+                            {ev.date} &middot; {ev.time}
+                          </p>
+                          <h3 className="font-heading text-3xl md:text-4xl tracking-wide uppercase text-cream leading-tight">
+                            {ev.headline}
+                          </h3>
+                        </div>
+                        <CalendarBlank
+                          weight="duotone"
+                          className={`w-7 h-7 ${iconColor} shrink-0`}
+                        />
+                      </div>
+                      <p className="text-cream/70 mb-2 text-base">
+                        <span className="font-semibold text-cream">Featuring {ev.artist}</span>{' '}
+                        &mdash; {ev.subtitle}
+                      </p>
+                      <p className="text-sm font-mono uppercase tracking-wider text-cream/50">
+                        {ev.price}
+                      </p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              )
+            })}
+          </div>
+
+          {/* Weekly schedule — compact rail */}
+          <ScrollReveal delay={200}>
+            <div className="bg-noir-950 border border-noir-700 rounded-sm p-6 md:p-8">
+              <div className="flex items-center gap-3 mb-6 pb-6 border-b border-noir-800">
+                <Fire weight="fill" className="w-4 h-4 text-ember-500" />
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-ember-400">
+                  Every Week At The Suite
+                </p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-noir-800">
+                {[
+                  {
+                    day: 'Tuesdays',
+                    title: 'Open Mic',
+                    time: '8pm',
+                    accent: 'blaze',
+                  },
+                  {
+                    day: 'Thursdays',
+                    title: 'Karaoke',
+                    time: '9pm',
+                    accent: 'ember',
+                  },
+                  {
+                    day: 'Fri & Sat',
+                    title: 'Live Music',
+                    time: 'From 9:30pm',
+                    accent: 'ember',
+                  },
+                  {
+                    day: 'Sundays',
+                    title: 'Soul Sessions',
+                    time: '7pm',
+                    accent: 'blaze',
+                  },
+                ].map((w) => (
+                  <div key={w.title} className="py-5 lg:py-2 lg:px-6 first:pt-0 lg:first:pl-0 last:pb-0 lg:last:pr-0">
+                    <p
+                      className={`text-xs font-mono uppercase tracking-[0.2em] mb-1 ${
+                        w.accent === 'ember' ? 'text-ember-400' : 'text-blaze-400'
                       }`}
                     >
-                      {ev.day}
-                    </span>
-                    <CalendarBlank
-                      weight="duotone"
-                      className={`w-5 h-5 ${
-                        ev.accent === 'ember' ? 'text-ember-500' : 'text-blaze-500'
-                      }`}
-                    />
+                      {w.day}
+                    </p>
+                    <p className="font-heading text-2xl tracking-wide uppercase text-cream">
+                      {w.title}
+                    </p>
+                    <p className="text-xs font-mono uppercase tracking-wider text-cream/50 mt-1">
+                      {w.time}
+                    </p>
                   </div>
-
-                  <h3 className="relative font-heading text-3xl md:text-4xl tracking-wide uppercase text-cream mb-3 leading-tight">
-                    {ev.title}
-                  </h3>
-
-                  <p className="relative text-sm font-mono uppercase tracking-wider text-cream/50 mb-4">
-                    {ev.time}
-                  </p>
-
-                  <p
-                    className="relative text-cream/70 leading-relaxed"
-                    dangerouslySetInnerHTML={{ __html: ev.desc }}
-                  />
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -453,6 +520,53 @@ export default function Home() {
               </div>
             </ScrollReveal>
           </div>
+
+          {/* Kitchen / Menu feature — uses real poster */}
+          <ScrollReveal delay={100}>
+            <div className="mt-4 grid grid-cols-1 md:grid-cols-12 gap-0 bg-noir-800 border border-noir-700 hover:border-ember-500/60 rounded-sm overflow-hidden transition-colors">
+              <div className="relative md:col-span-5 aspect-[4/5] md:aspect-auto min-h-[320px] overflow-hidden bg-noir-950">
+                <Image
+                  src="/images/POSTER1.jpg"
+                  alt="Rock N Soul Suite new menu — burgers, chicken, fries, beer"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                  className="object-cover"
+                />
+                <div
+                  aria-hidden
+                  className="absolute inset-0 bg-gradient-to-r from-transparent to-noir-800/40"
+                />
+                <div className="absolute top-4 left-4 px-3 py-1.5 bg-blaze-500 text-noir-950 text-xs font-mono font-bold uppercase tracking-widest rounded-sm">
+                  New
+                </div>
+              </div>
+              <div className="md:col-span-7 p-8 md:p-12 flex flex-col justify-center">
+                <span className="font-mono text-xs uppercase tracking-[0.2em] text-blaze-400 mb-3">
+                  07 &middot; The Kitchen
+                </span>
+                <h3 className="font-heading text-4xl md:text-5xl tracking-wide uppercase text-cream mb-4 leading-tight">
+                  New menu,
+                  <br />
+                  <span className="italic font-display text-blaze-400">just launched.</span>
+                </h3>
+                <p className="text-cream/70 leading-relaxed mb-6 max-w-xl">
+                  Proper pub food to go with the music. Loaded burgers, crispy chicken,
+                  fries piled high, and a cold pint to wash it down. Something for
+                  everyone — whether you&rsquo;re here for the band or just the bite.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {['Burgers', 'Chicken', 'Sharers', 'Cold Pints', 'Sunday Bites'].map((tag) => (
+                    <span
+                      key={tag}
+                      className="inline-block px-3 py-1.5 bg-noir-950 text-cream/70 text-xs font-mono uppercase tracking-wider rounded-sm border border-noir-700"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -471,44 +585,53 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             <ScrollReveal className="lg:col-span-5">
               <div className="relative">
-                {/* Decorative flame card — logo-inspired */}
+                {/* Logo feature card */}
                 <div className="relative aspect-[4/5] rounded-sm overflow-hidden border border-ember-500/30 bg-noir-950">
-                  {/* Fire gradient bg */}
+                  {/* Ambient fire glow behind logo */}
                   <div
                     aria-hidden
                     className="absolute inset-0"
                     style={{
                       background:
-                        'radial-gradient(ellipse at 50% 70%, rgba(225,66,32,0.45) 0%, transparent 55%), radial-gradient(ellipse at 30% 30%, rgba(226,149,31,0.25) 0%, transparent 50%), radial-gradient(ellipse at 70% 20%, rgba(42,99,236,0.15) 0%, transparent 50%)',
+                        'radial-gradient(ellipse at 50% 50%, rgba(225,66,32,0.35) 0%, transparent 55%), radial-gradient(ellipse at 30% 80%, rgba(226,149,31,0.2) 0%, transparent 50%)',
                     }}
                   />
-                  {/* Tall thin stripes like sound bars */}
+
+                  {/* Real logo image, centered */}
+                  <div className="absolute inset-0 flex items-center justify-center p-8">
+                    <div
+                      className="relative w-full max-w-[340px] aspect-square"
+                      style={{
+                        filter:
+                          'drop-shadow(0 0 60px rgba(225, 66, 32, 0.45)) drop-shadow(0 0 120px rgba(226, 149, 31, 0.25))',
+                      }}
+                    >
+                      <Image
+                        src="/images/LOGO.jpg"
+                        alt="Rock N Soul Suite logo"
+                        fill
+                        sizes="(max-width: 1024px) 340px, 340px"
+                        className="object-contain rounded-sm"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Sound-bar stripes overlay */}
                   <div
                     aria-hidden
-                    className="absolute inset-0"
+                    className="absolute inset-0 opacity-40 pointer-events-none"
                     style={{
                       backgroundImage:
                         'repeating-linear-gradient(90deg, transparent 0 34px, rgba(245,236,225,0.04) 34px 36px)',
                     }}
                   />
 
-                  {/* Big flame icon */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Flame
-                      weight="fill"
-                      className="w-56 h-56 text-ember-500/70 animate-flicker"
-                      style={{
-                        filter: 'drop-shadow(0 0 60px rgba(225,66,32,0.6))',
-                      }}
-                    />
-                  </div>
-
                   {/* Floating caption badge */}
                   <div className="absolute bottom-6 left-6 right-6 bg-noir-950/90 backdrop-blur-sm border border-ember-500/30 rounded-sm p-5">
                     <div className="flex items-center gap-3 mb-2">
                       <Star weight="fill" className="w-4 h-4 text-blaze-400" />
                       <span className="text-xs font-mono uppercase tracking-widest text-cream/60">
-                        Wrexham · Est. Locals
+                        15&ndash;17 Hill St &middot; Wrexham
                       </span>
                     </div>
                     <p className="font-heading text-2xl tracking-wide uppercase text-cream leading-snug">
@@ -754,8 +877,8 @@ export default function Home() {
                 Find Us
               </p>
               <ul className="space-y-2 text-sm text-cream/60">
-                <li>Wrexham town centre</li>
-                <li>LL13 · North Wales</li>
+                <li>15&ndash;17 Hill Street</li>
+                <li>Wrexham, LL11 1SN</li>
                 <li>Thu&ndash;Sun, open late</li>
                 <li>Private hire by request</li>
               </ul>
